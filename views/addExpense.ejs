@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <title>เพิ่มค่าใช้จ่าย</title>
+    <style>
+        body {
+            background-color: rgb(231,233,244);
+        }
+        .expense-container {
+            max-width: 500px;
+            width: 100%;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 20px;
+        }
+        .expense-header {
+            background-color: blueviolet;
+            border-radius: 10px 10px 0px 0px;
+        }
+        .form-input {
+            width: 100%;
+            height: 40px;
+            border-radius: 5px;
+            padding: 15px;
+            border: solid 1px rgb(241,242,243);
+        }
+        .btn-submit {
+            border-radius: 5px;
+            background-color: rgb(136,58,225);
+            color: #fff;
+            border: none;
+            height: 40px;
+        }
+        .btn-cancel {
+            border-radius: 5px;
+            background-color: rgb(223,90,84);
+            color: #fff;
+            border: none;
+            height: 40px;
+            width: 70px;
+        }
+        @media (max-width: 576px) {
+            .expense-container {
+                margin: 20px 10px;
+            }
+            .form-input {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid d-flex justify-content-center align-items-center min-vh-100 px-3">
+        <form method="POST" action="/addExpensed" class="expense-container">
+            <div class="container p-3 expense-header d-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#fff" class="bi bi-credit-card" viewBox="0 0 16 16">
+                    <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z"/>
+                    <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+                </svg>
+                <span class="mx-2 text-white">เพิ่มค่าใช้จ่าย</span>
+            </div>
+            <div class="container p-3">
+                <div class="mb-3">
+                    <div class="d-flex align-items-center mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(136,58,225)" class="bi bi-calendar4" viewBox="0 0 16 16">
+                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z"/>
+                        </svg>               
+                        <span class="mx-2">วันที่</span>
+                    </div>
+                    <input type="date" name="date" class="form-input" >
+                </div>
+
+                <div class="mb-3">
+                    <div class="d-flex align-items-center mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="rgb(136,58,225)" class="bi bi-tag" viewBox="0 0 16 16">
+                            <path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0"/>
+                            <path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1m0 5.586 7 7L13.586 9l-7-7H2z"/>
+                        </svg>
+                        <span class="mx-2">หมวดหมู่</span>
+                    </div>
+                    <input type="text" name="category" placeholder="เช่น ค่ารถ" class="form-input">
+                </div>
+
+                <div class="mb-3">
+                    <div class="d-flex align-items-center mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="rgb(136,58,225)" class="bi bi-text-paragraph" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m4-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5"/>
+                        </svg>
+                        <span class="mx-2">รายละเอียด</span>
+                    </div>
+                    <input name="description" type="text" placeholder="Mrt ไปที่ทำงาน" class="form-input">
+                </div>
+
+                <div class="mb-3">
+                    <div class="d-flex align-items-center mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="rgb(136,58,225)" class="bi bi-currency-bitcoin" viewBox="0 0 16 16">
+                            <path d="M5.5 13v1.25c0 .138.112.25.25.25h1a.25.25 0 0 0 .25-.25V13h.5v1.25c0 .138.112.25.25.25h1a.25.25 0 0 0 .25-.25V13h.084c1.992 0 3.416-1.033 3.416-2.82 0-1.502-1.007-2.323-2.186-2.44v-.088c.97-.242 1.683-.974 1.683-2.19C11.997 3.93 10.847 3 9.092 3H9V1.75a.25.25 0 0 0-.25-.25h-1a.25.25 0 0 0-.25.25V3h-.573V1.75a.25.25 0 0 0-.25-.25H5.75a.25.25 0 0 0-.25.25V3l-1.998.011a.25.25 0 0 0-.25.25v.989c0 .137.11.25.248.25l.755-.005a.75.75 0 0 1 .745.75v5.505a.75.75 0 0 1-.75.75l-.748.011a.25.25 0 0 0-.25.25v1c0 .138.112.25.25.25zm1.427-8.513h1.719c.906 0 1.438.498 1.438 1.312 0 .871-.575 1.362-1.877 1.362h-1.28zm0 4.051h1.84c1.137 0 1.756.58 1.756 1.524 0 .953-.626 1.45-2.158 1.45H6.927z"/>
+                        </svg>
+                        <span class="mx-2">จำนวนเงิน</span>
+                    </div>
+                    <input name="amount" type="number" placeholder="เข่น 100 บาท" class="form-input">
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn-submit flex-grow-1">บันทึกข้อมูล</button>
+                    <a href="/" class="btn btn-danger text-decoration-none">ยกเลิก</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
